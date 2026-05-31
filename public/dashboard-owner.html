@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Owner - Minimarket Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .sidebar-header h3 {
+            font-size: 1.1rem;
+            color: #111827;
+        }
+        
+        .user-info {
+            padding: 20px;
+            background: #f9fafb;
+            margin: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #2563eb;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .sidebar-menu {
+            flex: 1;
+            padding: 0 16px;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 4px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #6b7280;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .sidebar-menu a i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .sidebar-menu li.active a {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .sidebar-menu li:hover a {
+            background: #f3f4f6;
+            color: #111827;
+        }
+        
+        .sidebar-menu .menu-section {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #9ca3af;
+            padding: 16px 16px 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .top-bar {
+            padding: 16px 24px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .page-indicator h2 {
+            font-size: 1.25rem;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .page-indicator i {
+            color: #2563eb;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            padding: 8px 16px;
+            border-radius: 40px;
+            width: 300px;
+        }
+        
+        .search-bar i {
+            color: #9ca3af;
+            margin-right: 8px;
+        }
+        
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+        }
+        
+        .notification {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* ===== STATISTICS CARDS ===== */
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .stat-info h3 {
+            font-size: 1.5rem;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        /* ===== INVENTORY STATS ===== */
+        .inventory-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .inventory-stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .inventory-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .inventory-stat-info h4 {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+        
+        .inventory-stat-info p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        /* ===== ACTION BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            padding: 12px 24px;
+            background: #f3f4f6;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        
+        .btn-danger {
+            padding: 12px 24px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .btn-success {
+            padding: 12px 24px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        /* ===== PESANAN ONLINE — layout sama seperti POS kasir ===== */
+        .owner-pos-online-page .page-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .owner-pos-online-page .page-section h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+        
+        .owner-pos-online-page .page-section-desc {
+            font-size: 0.8125rem;
+            color: #6b7280;
+            margin-top: 4px;
+            font-weight: 400;
+            max-width: 52rem;
+            line-height: 1.5;
+        }
+        
+        .owner-pos-online-page .order-section-divider {
+            margin: 28px 0 16px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .owner-pos-online-page .order-section-divider h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        
+        .owner-pos-online-page .order-section-divider p {
+            font-size: 0.8125rem;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+        
+        .owner-pos-online-page .order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 18px;
+        }
+        
+        .owner-pos-online-page .order-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        
+        .owner-pos-online-page .order-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            border-radius: 0 0 4px 4px;
+            background: linear-gradient(90deg, #2563eb, #6366f1);
+            opacity: 0.35;
+        }
+        
+        .owner-pos-online-page .order-card:hover {
+            box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+            transform: translateY(-2px);
+            border-color: rgba(37, 99, 235, 0.15);
+        }
+        
+        .owner-pos-online-page .order-card.order-card--done {
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        
+        .owner-pos-online-page .order-card.order-card--done::before {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            opacity: 0.85;
+        }
+        
+        .owner-pos-online-page .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .owner-pos-online-page .order-id {
+            font-weight: 600;
+            color: #2563eb;
+        }
+        
+        .owner-pos-online-page .order-time {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+        
+        .owner-pos-online-page .order-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .owner-pos-online-page .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .owner-pos-online-page .status-processing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .owner-pos-online-page .status-shipped {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .owner-pos-online-page .status-delivered {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .owner-pos-online-page .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .owner-pos-online-page .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .owner-pos-online-page .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .owner-pos-online-page .customer-detail h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        
+        .owner-pos-online-page .customer-detail p {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        
+        .owner-pos-online-page .order-items {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin: 15px 0;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .owner-pos-online-page .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 0.85rem;
+        }
+        
+        .owner-pos-online-page .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .owner-pos-online-page .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .owner-pos-online-page .order-total {
+            font-weight: 700;
+            color: #10b981;
+        }
+        
+        .owner-pos-online-page .order-total--muted {
+            font-weight: 500;
+            color: #9ca3af;
+            font-size: 0.8rem;
+        }
+        
+        .owner-pos-online-page .order-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .owner-pos-online-page .order-actions .btn-primary,
+        .owner-pos-online-page .order-actions .btn-success,
+        .owner-pos-online-page .order-actions .btn-danger {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* ===== CARDS ===== */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header h3 {
+            font-size: 1.1rem;
+            color: #111827;
+        }
+        
+        .card-header a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .card-header a:hover {
+            text-decoration: underline;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        /* ===== TABLES ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            text-align: left;
+            padding: 12px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .data-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .stock-badge {
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .stock-warning {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .stock-safe {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-active {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .status-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        /* ===== NOTIFICATION LIST ===== */
+        .notification-list {
+            list-style: none;
+        }
+        
+        .notification-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-item i {
+            font-size: 1.2rem;
+        }
+        
+        .notification-item.success i {
+            color: #10b981;
+        }
+        
+        .notification-item.warning i {
+            color: #f59e0b;
+        }
+        
+        .notification-item p {
+            margin-bottom: 4px;
+        }
+        
+        .notification-item small {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        /* ===== GRID SYSTEM ===== */
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .col-6 {
+            flex: 1;
+        }
+        
+        .col-4 {
+            flex: 0 0 33.333%;
+        }
+        
+        .col-8 {
+            flex: 0 0 66.667%;
+        }
+        
+        /* ===== FORM STYLES ===== */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .filter-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        /* ===== PAGINATION ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+        
+        .pagination button {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .pagination button.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        
+        .pagination button:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.2rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #9ca3af;
+        }
+        
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+        
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1f2937;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toast.show {
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .toast i {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 100;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .stat-cards, .inventory-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stat-cards, .inventory-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .row {
+                flex-direction: column;
+            }
+            
+            .search-bar {
+                width: 200px;
+            }
+            
+            .owner-pos-online-page .order-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Notifikasi</span>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Owner -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://via.placeholder.com/40x40/2563eb/ffffff?text=M" alt="Logo">
+                <h3>Minimarket Pro</h3>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">BO</div>
+                <div>
+                    <div class="user-name">Budi Santoso</div>
+                    <span class="role-badge">OWNER</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="active" onclick="switchTab('dashboard')"><a><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    
+                    <div class="menu-section">Master Data</div>
+                    <li onclick="switchTab('manajemen-user')"><a><i class="fas fa-users"></i> Manajemen User</a></li>
+                    <li onclick="switchTab('kategori-produk')"><a><i class="fas fa-tags"></i> Kategori Produk</a></li>
+                    <li onclick="switchTab('produk')"><a><i class="fas fa-box"></i> Produk</a></li>
+                    <li onclick="switchTab('supplier')"><a><i class="fas fa-truck"></i> Supplier</a></li>
+                    
+                    <div class="menu-section">Inventori & Gudang</div>
+                    <li onclick="switchTab('inventaris')"><a><i class="fas fa-boxes"></i> Inventaris Stok</a></li>
+                    <li onclick="switchTab('barang-masuk')"><a><i class="fas fa-sign-in-alt"></i> Barang Masuk</a></li>
+                    <li onclick="switchTab('retur-barang')"><a><i class="fas fa-sign-out-alt"></i> Retur Barang</a></li>
+                    <li onclick="switchTab('audit-stok')"><a><i class="fas fa-history"></i> Audit Stok</a></li>
+                    
+                    <div class="menu-section">Laporan</div>
+                    <li onclick="switchTab('laporan-penjualan')"><a><i class="fas fa-chart-line"></i> Laporan Penjualan</a></li>
+                    <li onclick="switchTab('laporan-stok')"><a><i class="fas fa-file-alt"></i> Laporan Stok</a></li>
+
+                    <div class="menu-section">Aplikasi</div>
+                    <li onclick="switchTab('katalog-online')"><a><i class="fas fa-store"></i> Katalog Online</a></li>
+                    <li onclick="switchTab('order-konfirmasi')"><a><i class="fas fa-shopping-bag"></i> Pesanan Online</a></li>
+                    
+                    <li style="margin-top: 16px; border-top: 1px solid #e5e7eb; padding-top: 16px;" onclick="logout()"><a><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="page-indicator">
+                    <h2 id="pageTitle"><i class="fas fa-tachometer-alt"></i> Dashboard Owner</h2>
+                </div>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari..." id="globalSearch">
+                </div>
+                <div class="notification" onclick="showNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </div>
+            </div>
+            
+            <!-- Content Area with Tabs -->
+            <div class="content">
+                <!-- TAB: DASHBOARD -->
+                <div id="tab-dashboard" class="tab-content active">
+                    <div class="stat-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #e3f2fd;">
+                                <i class="fas fa-shopping-cart" style="color: #1976d2;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Rp 4.560.000</h3>
+                                <p>Penjualan Hari Ini</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #e8f5e8;">
+                                <i class="fas fa-exchange-alt" style="color: #2e7d32;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>156</h3>
+                                <p>Total Transaksi</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #fff3e0;">
+                                <i class="fas fa-boxes" style="color: #f57c00;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1.234</h3>
+                                <p>Total Produk</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #fce4e4;">
+                                <i class="fas fa-exclamation-triangle" style="color: #d32f2f;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>5</h3>
+                                <p>Stok Menipis</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Grafik Penjualan 7 Hari Terakhir</h3>
+                                    <a onclick="switchTab('laporan-penjualan')">Lihat Detail</a>
+                                </div>
+                                <div class="card-body">
+                                    <div style="height: 250px; background: #f9fafb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; flex-direction: column;">
+                                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 10px; color: #2563eb;"></i>
+                                        <p>Grafik penjualan akan ditampilkan di sini</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Produk Terlaris</h3>
+                                    <a onclick="switchTab('laporan-penjualan')">Lihat Semua</a>
+                                </div>
+                                <div class="card-body">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Produk</th>
+                                                <th>Terjual</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Indomie Goreng</td><td>450 pcs</td><td>Rp 1.575.000</td></tr>
+                                            <tr><td>Telur 1kg</td><td>280 pcs</td><td>Rp 7.840.000</td></tr>
+                                            <tr><td>Beras 5kg</td><td>120 pcs</td><td>Rp 9.000.000</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Produk dengan Stok Menipis</h3>
+                            <a onclick="switchTab('inventaris')">Lihat Semua</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Stok Saat Ini</th>
+                                        <th>Stok Minimum</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Indomie Goreng</td><td>Makanan</td><td>5</td><td>10</td><td><span class="stock-badge stock-warning">Menipis</span></td></tr>
+                                    <tr><td>Telur 1kg</td><td>Protein</td><td>3</td><td>10</td><td><span class="stock-badge stock-warning">Menipis</span></td></tr>
+                                    <tr><td>Minyak Goreng</td><td>Minyak</td><td>7</td><td>15</td><td><span class="stock-badge stock-warning">Menipis</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: MANAJEMEN USER -->
+                <div id="tab-manajemen-user" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Manajemen User</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-user')"><i class="fas fa-plus"></i> Tambah User</button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-item">
+                            <label>Role</label>
+                            <select>
+                                <option>Semua Role</option>
+                                <option>Owner</option>
+                                <option>Kasir</option>
+                                <option>Gudang</option>
+                                <option>Customer</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Status</label>
+                            <select>
+                                <option>Semua Status</option>
+                                <option>Aktif</option>
+                                <option>Nonaktif</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>&nbsp;</label>
+                            <button class="btn-secondary" style="width: 100%;">Filter</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>Budi Santoso</td>
+                                        <td>budi@email.com</td>
+                                        <td><span class="role-badge">OWNER</span></td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('user', 1)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('user', 1)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>Siti Khadijah</td>
+                                        <td>siti@email.com</td>
+                                        <td><span class="role-badge" style="background: #34d399;">KASIR</span></td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('user', 2)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('user', 2)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>Ahmad Junaedi</td>
+                                        <td>ahmad@email.com</td>
+                                        <td><span class="role-badge" style="background: #fbbf24; color: black;">GUDANG</span></td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('user', 3)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('user', 3)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#004</td>
+                                        <td>Ani Wijaya</td>
+                                        <td>ani@email.com</td>
+                                        <td><span class="role-badge" style="background: #a78bfa;">CUSTOMER</span></td>
+                                        <td><span class="status-inactive">Nonaktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('user', 4)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('user', 4)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- TAB: KATEGORI PRODUK -->
+                <div id="tab-kategori-produk" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Kategori Produk</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-kategori')"><i class="fas fa-plus"></i> Tambah Kategori</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Kategori</th>
+                                        <th>Deskripsi</th>
+                                        <th>Jumlah Produk</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>Makanan</td>
+                                        <td>Produk makanan ringan dan berat</td>
+                                        <td>45</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('kategori', 1)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('kategori', 1)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>Minuman</td>
+                                        <td>Produk minuman</td>
+                                        <td>38</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('kategori', 2)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('kategori', 2)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>Sembako</td>
+                                        <td>Sembilan bahan pokok</td>
+                                        <td>52</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('kategori', 3)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('kategori', 3)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: PRODUK -->
+                <div id="tab-produk" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Daftar Produk</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-produk')"><i class="fas fa-plus"></i> Tambah Produk</button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-item">
+                            <label>Kategori</label>
+                            <select>
+                                <option>Semua Kategori</option>
+                                <option>Makanan</option>
+                                <option>Minuman</option>
+                                <option>Sembako</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Status Stok</label>
+                            <select>
+                                <option>Semua Stok</option>
+                                <option>Stok Aman</option>
+                                <option>Stok Menipis</option>
+                                <option>Stok Habis</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>&nbsp;</label>
+                            <button class="btn-secondary" style="width: 100%;">Filter</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Nama Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PRD001</td>
+                                        <td>Indomie Goreng</td>
+                                        <td>Makanan</td>
+                                        <td>Rp 3.500</td>
+                                        <td>45</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('produk', 1)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('produk', 1)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PRD002</td>
+                                        <td>Telur 1kg</td>
+                                        <td>Sembako</td>
+                                        <td>Rp 28.000</td>
+                                        <td>12</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('produk', 2)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('produk', 2)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: SUPPLIER -->
+                <div id="tab-supplier" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Daftar Supplier</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-supplier')"><i class="fas fa-plus"></i> Tambah Supplier</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Nama Supplier</th>
+                                        <th>Kontak</th>
+                                        <th>Telepon</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SUP001</td>
+                                        <td>PT Indofood</td>
+                                        <td>Bambang</td>
+                                        <td>021-5551234</td>
+                                        <td>indofood@email.com</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('supplier', 1)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('supplier', 1)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SUP002</td>
+                                        <td>PT Sumber Protein</td>
+                                        <td>Siti</td>
+                                        <td>021-5555678</td>
+                                        <td>sumberprotein@email.com</td>
+                                        <td><span class="status-active">Aktif</span></td>
+                                        <td>
+                                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('supplier', 2)"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('supplier', 2)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: INVENTARIS STOK -->
+                <div id="tab-inventaris" class="tab-content">
+                    <div class="inventory-stats">
+                        <div class="inventory-stat-card">
+                            <div class="inventory-stat-icon" style="background: #e3f2fd;">
+                                <i class="fas fa-boxes" style="color: #1976d2;"></i>
+                            </div>
+                            <div class="inventory-stat-info">
+                                <h4>Total Produk</h4>
+                                <p>1.234</p>
+                            </div>
+                        </div>
+                        <div class="inventory-stat-card">
+                            <div class="inventory-stat-icon" style="background: #fee2e2;">
+                                <i class="fas fa-exclamation-triangle" style="color: #dc2626;"></i>
+                            </div>
+                            <div class="inventory-stat-info">
+                                <h4>Stok Menipis</h4>
+                                <p>5</p>
+                            </div>
+                        </div>
+                        <div class="inventory-stat-card">
+                            <div class="inventory-stat-icon" style="background: #d1fae5;">
+                                <i class="fas fa-check-circle" style="color: #059669;"></i>
+                            </div>
+                            <div class="inventory-stat-info">
+                                <h4>Stok Tersedia</h4>
+                                <p>1.229</p>
+                            </div>
+                        </div>
+                        <div class="inventory-stat-card">
+                            <div class="inventory-stat-icon" style="background: #fef3c7;">
+                                <i class="fas fa-truck" style="color: #d97706;"></i>
+                            </div>
+                            <div class="inventory-stat-info">
+                                <h4>Supplier Aktif</h4>
+                                <p>12</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Status Stok Produk</h3>
+                            <a onclick="switchTab('laporan-stok')">Lihat Laporan</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Stok Saat Ini</th>
+                                        <th>Stok Minimum</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Indomie Goreng</td>
+                                        <td>Makanan</td>
+                                        <td>5</td>
+                                        <td>10</td>
+                                        <td><span class="stock-badge stock-warning">Menipis</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="orderStock('Indomie Goreng')">Pesan</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telur 1kg</td>
+                                        <td>Protein</td>
+                                        <td>3</td>
+                                        <td>10</td>
+                                        <td><span class="stock-badge stock-warning">Menipis</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="orderStock('Telur')">Pesan</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Minyak Goreng</td>
+                                        <td>Minyak</td>
+                                        <td>7</td>
+                                        <td>15</td>
+                                        <td><span class="stock-badge stock-warning">Menipis</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="orderStock('Minyak')">Pesan</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Beras 5kg</td>
+                                        <td>Sembako</td>
+                                        <td>2</td>
+                                        <td>8</td>
+                                        <td><span class="stock-badge stock-warning">Menipis</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="orderStock('Beras')">Pesan</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: BARANG MASUK -->
+                <div id="tab-barang-masuk" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Barang Masuk</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-barang-masuk')"><i class="fas fa-plus"></i> Tambah Barang Masuk</button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-item">
+                            <label>Supplier</label>
+                            <select>
+                                <option>Semua Supplier</option>
+                                <option>PT Indofood</option>
+                                <option>PT Sumber Protein</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Tanggal</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>No. PO</th>
+                                        <th>Tanggal</th>
+                                        <th>Supplier</th>
+                                        <th>Produk</th>
+                                        <th>Jumlah</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PO-2024-001</td>
+                                        <td>08 Mar 2024</td>
+                                        <td>PT Indofood</td>
+                                        <td>Indomie Goreng</td>
+                                        <td>50 pcs</td>
+                                        <td><span class="status-active">Selesai</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="viewDetail('po', 1)"><i class="fas fa-eye"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PO-2024-002</td>
+                                        <td>07 Mar 2024</td>
+                                        <td>PT Sumber Protein</td>
+                                        <td>Telur 1kg</td>
+                                        <td>30 pcs</td>
+                                        <td><span class="status-active">Selesai</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="viewDetail('po', 2)"><i class="fas fa-eye"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: RETUR BARANG -->
+                <div id="tab-retur-barang" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Retur Barang</h3>
+                        <button class="btn-primary" onclick="openModal('tambah-retur')"><i class="fas fa-plus"></i> Tambah Retur</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>No. Retur</th>
+                                        <th>Tanggal</th>
+                                        <th>Supplier</th>
+                                        <th>Produk</th>
+                                        <th>Jumlah</th>
+                                        <th>Alasan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>RET-2024-001</td>
+                                        <td>07 Mar 2024</td>
+                                        <td>PT Indofood</td>
+                                        <td>Roti Tawar</td>
+                                        <td>5 pcs</td>
+                                        <td>Kadaluarsa</td>
+                                        <td><span class="status-active">Diproses</span></td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="viewDetail('retur', 1)"><i class="fas fa-eye"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: AUDIT STOK -->
+                <div id="tab-audit-stok" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0; flex-wrap: wrap; gap: 16px;">
+                        <div style="flex: 1; min-width: min(100%, 360px);">
+                            <h3>Audit Stok</h3>
+                            <p style="margin-top: 10px; font-size: 0.875rem; color: #6b7280; font-weight: 400; line-height: 1.55;">
+                                <strong>Audit stok</strong> dipakai saat Anda (atau tim) menghitung fisik barang di rak/gudang, lalu mencatat hasilnya dan membandingkannya dengan angka di aplikasi.<br>Jika ada selisih—misal hilang, rusak, atau salah input—Anda bisa menjadikan catatan ini dasar untuk <em>menyesuaikan</em> stok ke angka yang benar.<br><br>
+                                Ini berbeda dari menu <strong>Barang Masuk</strong>: barang masuk untuk mencatat pemasokan/pembelian baru dari supplier, sedangkan audit untuk pengecekan berkala apakah stok di aplikasi masih sama dengan fisiknya.
+                            </p>
+                        </div>
+                        <button type="button" class="btn-primary" style="align-self: flex-start;" onclick="openModal('audit-baru')"><i class="fas fa-plus"></i> Catat pemeriksaan</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Produk</th>
+                                        <th>Stok Sistem</th>
+                                        <th>Stok Fisik</th>
+                                        <th>Selisih</th>
+                                        <th>Auditor</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>08 Mar 2024</td>
+                                        <td>Indomie Goreng</td>
+                                        <td>45</td>
+                                        <td>45</td>
+                                        <td>0</td>
+                                        <td>Budi Santoso</td>
+                                        <td><button class="btn-secondary" style="padding: 4px 8px;" onclick="viewDetail('audit', 1)"><i class="fas fa-eye"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: LAPORAN PENJUALAN -->
+                <div id="tab-laporan-penjualan" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Laporan Penjualan</h3>
+                        <button class="btn-success" onclick="exportReport('penjualan')"><i class="fas fa-file-excel"></i> Export Excel</button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-item">
+                            <label>Periode</label>
+                            <select>
+                                <option>Hari Ini</option>
+                                <option>7 Hari Terakhir</option>
+                                <option>Bulan Ini</option>
+                                <option>Kustom</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Dari Tanggal</label>
+                            <input type="date">
+                        </div>
+                        <div class="filter-item">
+                            <label>Sampai Tanggal</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Total Penjualan</h3>
+                                </div>
+                                <div class="card-body">
+                                    <h2 style="color: #2563eb; font-size: 2rem;">Rp 24.560.000</h2>
+                                    <p>Periode: 01-08 Mar 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Jumlah Transaksi</h3>
+                                </div>
+                                <div class="card-body">
+                                    <h2 style="color: #2563eb; font-size: 2rem;">856</h2>
+                                    <p>Periode: 01-08 Mar 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: LAPORAN STOK -->
+                <div id="tab-laporan-stok" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Laporan Stok</h3>
+                        <button class="btn-success" onclick="exportReport('stok')"><i class="fas fa-file-excel"></i> Export Excel</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ringkasan Stok</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <th>Total Produk</th>
+                                        <th>Total Stok</th>
+                                        <th>Nilai Stok</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Makanan</td><td>45</td><td>1.230</td><td>Rp 4.305.000</td></tr>
+                                    <tr><td>Minuman</td><td>38</td><td>950</td><td>Rp 4.750.000</td></tr>
+                                    <tr><td>Sembako</td><td>52</td><td>420</td><td>Rp 15.750.000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: KATALOG ONLINE -->
+                <div id="tab-katalog-online" class="tab-content">
+                    <div class="card-header" style="margin-bottom: 20px; padding: 0;">
+                        <h3>Katalog Online</h3>
+                    </div>
+                    <div class="card">
+                        <div class="card-body" style="padding: 0;">
+                            <iframe
+                                src="katalog-online.html"
+                                style="width:100%; height: calc(100vh - 180px); border:0; border-radius: 16px;"
+                                title="Katalog Online">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: PESANAN ONLINE — sama struktur/layout dengan POS kasir -->
+                <div id="tab-order-konfirmasi" class="tab-content owner-pos-online-page">
+                    <div class="page-section">
+                        <div>
+                            <h3>Pesanan online</h3>
+                            <p class="page-section-desc">Terima atau batalkan pesanan baru, lalu jalankan alur proses hingga sampai — semua di halaman ini.</p>
+                        </div>
+                    </div>
+
+                    <div class="order-section-divider">
+                        <h3><i class="fas fa-hourglass-half" style="color:#d97706;"></i> Menunggu konfirmasi</h3>
+                        <p>Dari katalog online — terima untuk diproses atau batalkan bila tidak dilayani.</p>
+                    </div>
+                    <div class="order-grid" id="ownerOrdersPendingGrid"></div>
+
+                    <div class="order-section-divider">
+                        <h3><i class="fas fa-cog" style="color:#2563eb;"></i> Sedang diproses</h3>
+                        <p>Setelah diterima, tandai dikirim begitu paket/disposal siap ke pelanggan.</p>
+                    </div>
+                    <div class="order-grid" id="ownerOrdersProcessingGrid"></div>
+
+                    <div class="order-section-divider">
+                        <h3><i class="fas fa-truck" style="color:#059669;"></i> Dalam pengiriman</h3>
+                        <p>Perjalanan ke pelanggan — klik Selesai setelah order sampai.</p>
+                    </div>
+                    <div class="order-grid" id="ownerOrdersShippingGrid"></div>
+
+                    <div class="order-section-divider">
+                        <h3><i class="fas fa-circle-check" style="color:#10b981;"></i> Pesanan selesai &amp; sampai</h3>
+                        <p>Riwayat transaksi online yang telah selesai / sampai ke pelanggan.</p>
+                    </div>
+                    <div class="order-grid" id="ownerOrdersCompletedGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Fungsi untuk toggle sidebar di mobile
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+        
+        // Fungsi untuk switch tab
+        function switchTab(tabName) {
+            // Update active class di sidebar
+            document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
+            const menuItems = document.querySelectorAll('.sidebar-menu li');
+            for (let i = 0; i < menuItems.length; i++) {
+                if (menuItems[i].getAttribute('onclick')?.includes(tabName)) {
+                    menuItems[i].classList.add('active');
+                    break;
+                }
+            }
+            
+            // Update active class di tab content
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard Owner',
+                'manajemen-user': 'Manajemen User',
+                'kategori-produk': 'Kategori Produk',
+                'produk': 'Daftar Produk',
+                'katalog-online': 'Katalog Online',
+                'order-konfirmasi': 'Pesanan Online',
+                'supplier': 'Daftar Supplier',
+                'inventaris': 'Inventaris Stok',
+                'barang-masuk': 'Barang Masuk',
+                'retur-barang': 'Retur Barang',
+                'audit-stok': 'Audit Stok',
+                'laporan-penjualan': 'Laporan Penjualan',
+                'laporan-stok': 'Laporan Stok'
+            };
+            
+            const title = titles[tabName] || 'Dashboard Owner';
+            document.getElementById('pageTitle').innerHTML = `<i class="fas ${getIconForTab(tabName)}"></i> ${title}`;
+            
+            // Show toast notification
+            showToast(`Membuka ${title}`);
+            
+            // Close sidebar di mobile
+            if (window.innerWidth <= 1024) {
+                document.querySelector('.sidebar').classList.remove('active');
+            }
+            
+            // Render data dinamis untuk tab terkait
+            try {
+                if (tabName === 'produk') renderProdukTab();
+                if (tabName === 'kategori-produk') renderKategoriTab();
+                if (tabName === 'manajemen-user') renderStaffTab();
+                if (tabName === 'order-konfirmasi') renderOrderConfirmTab();
+            } catch (e) {
+                // ignore render errors for tabs that don't have elements
+            }
+        }
+        
+        // Fungsi untuk mendapatkan icon berdasarkan tab
+        function getIconForTab(tabName) {
+            const icons = {
+                'dashboard': 'fa-tachometer-alt',
+                'manajemen-user': 'fa-users',
+                'kategori-produk': 'fa-tags',
+                'produk': 'fa-box',
+                'katalog-online': 'fa-store',
+                'order-konfirmasi': 'fa-shopping-bag',
+                'supplier': 'fa-truck',
+                'inventaris': 'fa-boxes',
+                'barang-masuk': 'fa-sign-in-alt',
+                'retur-barang': 'fa-sign-out-alt',
+                'audit-stok': 'fa-history',
+                'laporan-penjualan': 'fa-chart-line',
+                'laporan-stok': 'fa-file-alt'
+            };
+            return icons[tabName] || 'fa-tachometer-alt';
+        }
+        
+        // Fungsi untuk menampilkan toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.innerText = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Fungsi untuk logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                showToast('Logout berhasil');
+                setTimeout(() => {
+                    window.top.location.href = '/';
+                }, 1000);
+            }
+        }
+        
+        // ===== Shared LocalStorage (Owner CRUD) =====
+        const LS = {
+            products: 'mm_products',
+            categories: 'mm_categories',
+            orders: 'mm_orders',
+            posTransactions: 'mm_pos_transactions',
+            staffUsers: 'mm_staff_users',
+            promos: 'mm_promos',
+            customers: 'mm_customers'
+        };
+        
+        function lsGet(key, fallback) {
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return fallback;
+                return JSON.parse(raw);
+            } catch (e) {
+                return fallback;
+            }
+        }
+        
+        function lsSet(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
+        
+        function nextId(arr) {
+            const max = Array.isArray(arr) ? Math.max(0, ...arr.map(x => Number(x.id) || 0)) : 0;
+            return max + 1;
+        }
+        
+        function seedIfEmpty() {
+            const seededProducts = [
+                { id: 1, name: 'Indomie Goreng', category: 'Makanan', price: 3500, stock: 45, description: '' },
+                { id: 2, name: 'Telur 1kg', category: 'Sembako', price: 28000, stock: 12, description: '' },
+                { id: 3, name: 'Minyak Goreng', category: 'Sembako', price: 15000, stock: 23, description: '' },
+                { id: 4, name: 'Beras 5kg', category: 'Sembako', price: 75000, stock: 8, description: '' },
+                { id: 5, name: 'Gula Pasir', category: 'Sembako', price: 14500, stock: 15, description: '' },
+                { id: 6, name: 'Kopi Sachet', category: 'Minuman', price: 2000, stock: 100, description: '' },
+                { id: 7, name: 'Teh Botol', category: 'Minuman', price: 5000, stock: 30, description: '' },
+                { id: 8, name: 'Roti Tawar', category: 'Makanan', price: 18000, stock: 7, description: '' }
+            ];
+            
+            const prods = lsGet(LS.products, []);
+            if (!Array.isArray(prods) || prods.length === 0) lsSet(LS.products, seededProducts);
+            
+            const cats = lsGet(LS.categories, []);
+            if (!Array.isArray(cats) || cats.length === 0) {
+                const prodNow = lsGet(LS.products, seededProducts);
+                const catNames = [...new Set((prodNow || []).map(p => p.category).filter(Boolean))];
+                lsSet(LS.categories, catNames.map((name, idx) => ({ id: idx + 1, name, description: '' })));
+            }
+            
+            const staff = lsGet(LS.staffUsers, []);
+            if (!Array.isArray(staff) || staff.length === 0) {
+                lsSet(LS.staffUsers, [
+                    { id: 1, name: 'Budi Santoso', email: 'budi@email.com', role: 'OWNER', status: 'aktif' },
+                    { id: 2, name: 'Siti Khadijah', email: 'siti@email.com', role: 'KASIR', status: 'aktif' },
+                    { id: 3, name: 'Ahmad Junaedi', email: 'ahmad@email.com', role: 'GUDANG', status: 'aktif' }
+                ]);
+            }
+            
+            const promos = lsGet(LS.promos, []);
+            if (!Array.isArray(promos)) lsSet(LS.promos, []);
+            const customers = lsGet(LS.customers, []);
+            if (!Array.isArray(customers)) lsSet(LS.customers, []);
+        }
+        
+        function renderProdukTab() {
+            const tbody = document.querySelector('#tab-produk .data-table tbody');
+            if (!tbody) return;
+            const products = lsGet(LS.products, []);
+            const rows = (products || []).map(p => `
+                <tr>
+                    <td>PRD${String(p.id).padStart(3, '0')}</td>
+                    <td>${p.name || ''}</td>
+                    <td>${p.category || ''}</td>
+                    <td>Rp ${(Number(p.price) || 0).toLocaleString('id-ID')}</td>
+                    <td>${Number(p.stock) || 0}</td>
+                    <td><span class="status-active">Aktif</span></td>
+                    <td>
+                        <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('produk', ${p.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('produk', ${p.id})"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            tbody.innerHTML = rows || `<tr><td colspan="7" style="text-align:center;color:#6b7280;padding:24px;">Belum ada produk</td></tr>`;
+        }
+        
+        function renderKategoriTab() {
+            const tbody = document.querySelector('#tab-kategori-produk .data-table tbody');
+            if (!tbody) return;
+            const categories = lsGet(LS.categories, []);
+            const products = lsGet(LS.products, []);
+            const rows = (categories || []).map(c => {
+                const count = (products || []).filter(p => p.category === c.name).length;
+                return `
+                    <tr>
+                        <td>#${String(c.id).padStart(3, '0')}</td>
+                        <td>${c.name || ''}</td>
+                        <td>${c.description || ''}</td>
+                        <td>${count}</td>
+                        <td><span class="status-active">Aktif</span></td>
+                        <td>
+                            <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('kategori', ${c.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('kategori', ${c.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            tbody.innerHTML = rows || `<tr><td colspan="6" style="text-align:center;color:#6b7280;padding:24px;">Belum ada kategori</td></tr>`;
+        }
+        
+        function roleBadge(role) {
+            const r = String(role || '').toUpperCase();
+            if (r.includes('OWNER')) return `<span class="role-badge">OWNER</span>`;
+            if (r.includes('KASIR')) return `<span class="role-badge" style="background:#34d399;">KASIR</span>`;
+            if (r.includes('GUDANG')) return `<span class="role-badge" style="background:#fbbf24; color:black;">GUDANG</span>`;
+            return `<span class="role-badge" style="background:#a78bfa;">${escapeHtml(r)}</span>`;
+        }
+        
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        
+        function renderStaffTab() {
+            const tbody = document.querySelector('#tab-manajemen-user .data-table tbody');
+            if (!tbody) return;
+            const users = lsGet(LS.staffUsers, []);
+            const rows = (users || []).map(u => `
+                <tr>
+                    <td>#${String(u.id).padStart(3, '0')}</td>
+                    <td>${escapeHtml(u.name || '')}</td>
+                    <td>${escapeHtml(u.email || '')}</td>
+                    <td>${roleBadge(u.role)}</td>
+                    <td><span class="${String(u.status || '').toLowerCase() === 'aktif' ? 'status-active' : 'status-inactive'}">${String(u.status || 'aktif')}</span></td>
+                    <td>
+                        <button class="btn-secondary" style="padding: 4px 8px;" onclick="editItem('user', ${u.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-danger" style="padding: 4px 8px;" onclick="deleteItem('user', ${u.id})"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            tbody.innerHTML = rows || `<tr><td colspan="6" style="text-align:center;color:#6b7280;padding:24px;">Belum ada staff</td></tr>`;
+        }
+        
+        function ownerPosOrderCardMarkup(o, actionButtonsInner) {
+            const meta = {
+                pending: { cls: 'status-pending', label: 'Online · Menunggu' },
+                processing: { cls: 'status-processing', label: 'Online · Diproses' },
+                shipped: { cls: 'status-shipped', label: 'Online · Dikirim' },
+                delivered: { cls: 'status-delivered', label: 'Online · Selesai' },
+                cancelled: { cls: 'status-cancelled', label: 'Online · Dibatalkan' }
+            };
+            const m = meta[o.status] || { cls: 'status-pending', label: 'Online · ' + escapeHtml(String(o.status)) };
+            const c = String(o.customer || '');
+            const items = Array.isArray(o.items) ? o.items : [];
+            const totalNum = Number(o.total) || 0;
+            return `
+                    <div class="order-card">
+                        <div class="order-header"><span class="order-id">${escapeHtml(o.orderId || '')}</span><span class="order-time">${escapeHtml(o.date || '')}</span><span class="order-status ${m.cls}">${m.label}</span></div>
+                        <div class="customer-info"><div class="customer-avatar">${escapeHtml(c.charAt(0) || '?')}</div><div class="customer-detail"><h4>${escapeHtml(c)}</h4><p>${escapeHtml(o.phone || '')}<br>${escapeHtml(o.address || '')}</p></div></div>
+                        <div class="order-items">${items.map(i => `<div class="order-item"><span>${escapeHtml(i.name)} ×${Number(i.qty)}</span><span>Rp ${(Number(i.price) * Number(i.qty)).toLocaleString('id-ID')}</span></div>`).join('')}</div>
+                        <div class="order-footer"><span class="order-total">Total: Rp ${totalNum.toLocaleString('id-ID')}</span>
+                        <div class="order-actions">${actionButtonsInner}</div></div>
+                    </div>`;
+        }
+        
+        function ownerUpdateOrderStatus(id, newStatus) {
+            const orders = lsGet(LS.orders, []) || [];
+            const order = orders.find(o => Number(o.id) === Number(id));
+            if (!order) return;
+            order.status = newStatus;
+            if (newStatus === 'delivered') {
+                order.deliveredAt = new Date().toLocaleString('id-ID');
+                order.deliveredTs = Date.now();
+            }
+            lsSet(LS.orders, orders);
+            renderOrderConfirmTab();
+            const msg =
+                newStatus === 'processing' ? 'Diproses' :
+                newStatus === 'shipped' ? 'Dikirim' :
+                newStatus === 'delivered' ? 'Selesai / sampai' :
+                String(newStatus);
+            showToast(`Order ${order.orderId} · ${msg}`);
+        }
+        
+        function ownerCancelOnlineOrder(id) {
+            const orders = lsGet(LS.orders, []) || [];
+            const order = orders.find(o => Number(o.id) === Number(id));
+            if (!order || order.status !== 'pending') return;
+            if (!confirm('Batalkan pesanan ini?')) return;
+            order.status = 'cancelled';
+            order.cancelledAt = new Date().toLocaleString('id-ID');
+            lsSet(LS.orders, orders);
+            renderOrderConfirmTab();
+            showToast(`Order ${order.orderId} dibatalkan`);
+        }
+        
+        function renderOrderConfirmTab() {
+            const orders = lsGet(LS.orders, []) || [];
+            const emptyGridMsg = '<p style="text-align:center;padding:40px;color:#6b7280;grid-column:1/-1;">';
+            
+            const ordersPendingGrid = document.getElementById('ownerOrdersPendingGrid');
+            if (ordersPendingGrid) {
+                const pend = orders.filter(o => o.status === 'pending');
+                ordersPendingGrid.innerHTML = pend.length === 0
+                    ? emptyGridMsg + 'Tidak ada pesanan yang menunggu konfirmasi</p>'
+                    : pend.map(o => ownerPosOrderCardMarkup(o,
+                        `<button class="btn-success" onclick="ownerUpdateOrderStatus(${o.id}, 'processing')">Terima / Proses</button>
+                            <button class="btn-danger" onclick="ownerCancelOnlineOrder(${o.id})">Batalkan</button>`
+                    )).join('');
+            }
+            
+            const ordersProcessingGrid = document.getElementById('ownerOrdersProcessingGrid');
+            if (ordersProcessingGrid) {
+                const lst = orders.filter(o => o.status === 'processing');
+                ordersProcessingGrid.innerHTML = lst.length === 0
+                    ? emptyGridMsg + 'Tidak ada pesanan yang sedang diproses</p>'
+                    : lst.map(o => ownerPosOrderCardMarkup(o,
+                        `<button class="btn-primary" onclick="ownerUpdateOrderStatus(${o.id}, 'shipped')">Tandai dikirim</button>`
+                    )).join('');
+            }
+            
+            const ordersShippingGrid = document.getElementById('ownerOrdersShippingGrid');
+            if (ordersShippingGrid) {
+                const lst = orders.filter(o => o.status === 'shipped');
+                ordersShippingGrid.innerHTML = lst.length === 0
+                    ? emptyGridMsg + 'Tidak ada pesanan dalam pengiriman</p>'
+                    : lst.map(o => ownerPosOrderCardMarkup(o,
+                        `<button class="btn-success" onclick="ownerUpdateOrderStatus(${o.id}, 'delivered')">Selesai / sampai</button>`
+                    )).join('');
+            }
+            
+            const ordersCompletedGrid = document.getElementById('ownerOrdersCompletedGrid');
+            if (ordersCompletedGrid) {
+                const doneList = orders.filter(o => o.status === 'delivered').sort((a, b) => (b.deliveredTs || b.id) - (a.deliveredTs || a.id));
+                const custSafe = (o) => String(o.customer || '');
+                ordersCompletedGrid.innerHTML = doneList.map(o => {
+                    const oc = custSafe(o);
+                    const rows = Array.isArray(o.items) ? o.items : [];
+                    return `
+                    <div class="order-card order-card--done">
+                        <div class="order-header">
+                            <span class="order-id">${escapeHtml(o.orderId || '')}</span>
+                            <span class="order-time">${escapeHtml(o.date || '')}</span>
+                            <span class="order-status status-delivered">Online · Sampai / selesai</span>
+                        </div>
+                        <div class="customer-info">
+                            <div class="customer-avatar">${escapeHtml(oc.charAt(0) || '?')}</div>
+                            <div class="customer-detail"><h4>${escapeHtml(oc)}</h4><p>${escapeHtml(o.phone || '')}<br>${escapeHtml(o.address || '')}</p></div>
+                        </div>
+                        <div class="order-items">${rows.map(i => `<div class="order-item"><span>${escapeHtml(i.name)} ×${Number(i.qty)}</span><span>Rp ${(Number(i.price) * Number(i.qty)).toLocaleString('id-ID')}</span></div>`).join('')}</div>
+                        <div class="order-footer" style="flex-direction:column;align-items:flex-start;gap:8px;border-top:none;padding-top:10px;margin-top:8px;">
+                            <span class="order-total">Total: Rp ${Number(o.total).toLocaleString('id-ID')}</span>
+                            <span class="order-total--muted" style="font-weight:500;"><i class="fas fa-truck" style="margin-right:6px;"></i> Sampai: ${escapeHtml(o.deliveredAt || '—')} · ${rows.length} jenis barang</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                if (doneList.length === 0) {
+                    ordersCompletedGrid.innerHTML = '<p style="text-align:center;padding:36px;color:#6b7280;grid-column:1/-1;">Belum ada pesanan yang selesai / sampai</p>';
+                }
+            }
+        }
+        
+        // ===== CRUD (prompt-based for fast functionality) =====
+        function openModal(type) {
+            // We'll implement with prompt to keep changes minimal.
+            if (type === 'tambah-produk') {
+                const name = prompt('Nama produk:');
+                if (!name) return;
+                const category = prompt('Kategori produk (nama kategori):') || 'Umum';
+                const price = Number(prompt('Harga:') || 0);
+                const stock = Number(prompt('Stok:') || 0);
+                const description = prompt('Deskripsi (opsional):') || '';
+                
+                const products = lsGet(LS.products, []);
+                const categories = lsGet(LS.categories, []);
+                
+                if (!categories.some(c => c.name === category)) {
+                    categories.push({ id: nextId(categories), name: category, description: '' });
+                    lsSet(LS.categories, categories);
+                }
+                
+                const newP = { id: nextId(products), name, category, price, stock, description };
+                products.push(newP);
+                lsSet(LS.products, products);
+                showToast('Produk ditambahkan.');
+                renderProdukTab();
+                renderKategoriTab();
+                return;
+            }
+            
+            if (type === 'tambah-kategori') {
+                const name = prompt('Nama kategori:');
+                if (!name) return;
+                const description = prompt('Deskripsi (opsional):') || '';
+                const categories = lsGet(LS.categories, []);
+                categories.push({ id: nextId(categories), name, description });
+                lsSet(LS.categories, categories);
+                showToast('Kategori ditambahkan.');
+                renderKategoriTab();
+                return;
+            }
+            
+            if (type === 'tambah-user') {
+                const name = prompt('Nama staff:');
+                if (!name) return;
+                const email = prompt('Email:') || '';
+                const role = (prompt('Role (OWNER/KASIR/GUDANG):', 'KASIR') || 'KASIR').toUpperCase();
+                const status = (prompt('Status (aktif/nonaktif):', 'aktif') || 'aktif').toLowerCase();
+                
+                const users = lsGet(LS.staffUsers, []);
+                users.push({ id: nextId(users), name, email, role, status });
+                lsSet(LS.staffUsers, users);
+                showToast('Akun staff ditambahkan.');
+                renderStaffTab();
+                return;
+            }
+            
+            if (type === 'audit-baru') {
+                showToast('Riwayat audit berikut masih contoh; nanti Anda bisa menghubungkannya dengan stok aplikasi secara real.');
+                return;
+            }
+            
+            showToast(`Membuka form ${type.replace(/-/g, ' ')}`);
+        }
+        
+        function editItem(type, id) {
+            const products = lsGet(LS.products, []);
+            const categories = lsGet(LS.categories, []);
+            const users = lsGet(LS.staffUsers, []);
+            
+            if (type === 'produk') {
+                const target = (products || []).find(p => Number(p.id) === Number(id));
+                if (!target) return;
+                const name = prompt('Nama produk:', target.name);
+                if (!name) return;
+                const category = prompt('Kategori produk (nama):', target.category);
+                const price = Number(prompt('Harga:', target.price) || target.price);
+                const stock = Number(prompt('Stok:', target.stock) || target.stock);
+                const description = prompt('Deskripsi (opsional):', target.description || '');
+                
+                target.name = name;
+                target.category = category || target.category;
+                target.price = price;
+                target.stock = stock;
+                target.description = description || '';
+                
+                if (!categories.some(c => c.name === target.category)) {
+                    categories.push({ id: nextId(categories), name: target.category, description: '' });
+                    lsSet(LS.categories, categories);
+                }
+                
+                lsSet(LS.products, products);
+                showToast('Produk diperbarui.');
+                renderProdukTab();
+                renderKategoriTab();
+                return;
+            }
+            
+            if (type === 'kategori') {
+                const target = (categories || []).find(c => Number(c.id) === Number(id));
+                if (!target) return;
+                const oldName = target.name;
+                const name = prompt('Nama kategori:', target.name);
+                if (!name) return;
+                const description = prompt('Deskripsi:', target.description || '') || '';
+                target.name = name;
+                target.description = description;
+                
+                // Also update product.category string for consistency
+                const prods = lsGet(LS.products, []);
+                prods.forEach(p => { if (p.category === oldName) p.category = name; });
+                
+                lsSet(LS.categories, categories);
+                lsSet(LS.products, prods);
+                showToast('Kategori diperbarui.');
+                renderKategoriTab();
+                renderProdukTab();
+                return;
+            }
+            
+            if (type === 'user') {
+                const target = (users || []).find(u => Number(u.id) === Number(id));
+                if (!target) return;
+                const name = prompt('Nama staff:', target.name);
+                if (!name) return;
+                const email = prompt('Email:', target.email || '') || '';
+                const role = (prompt('Role (OWNER/KASIR/GUDANG):', target.role || 'KASIR') || target.role).toUpperCase();
+                const status = (prompt('Status (aktif/nonaktif):', target.status || 'aktif') || 'aktif').toLowerCase();
+                target.name = name;
+                target.email = email;
+                target.role = role;
+                target.status = status;
+                lsSet(LS.staffUsers, users);
+                showToast('Staff diperbarui.');
+                renderStaffTab();
+                return;
+            }
+            
+            showToast(`edit ${type} ${id}`);
+        }
+        
+        function deleteItem(type, id) {
+            if (!confirm(`Hapus ${type} ID: ${id}?`)) return;
+            
+            if (type === 'produk') {
+                const products = lsGet(LS.products, []);
+                lsSet(LS.products, (products || []).filter(p => Number(p.id) !== Number(id)));
+                showToast('Produk dihapus.');
+                renderProdukTab();
+                return;
+            }
+            if (type === 'kategori') {
+                const categories = lsGet(LS.categories, []);
+                const cats = (categories || []).filter(c => Number(c.id) !== Number(id));
+                lsSet(LS.categories, cats);
+                // Keep products' category string; optionally remap later.
+                showToast('Kategori dihapus.');
+                renderKategoriTab();
+                renderProdukTab();
+                return;
+            }
+            if (type === 'user') {
+                const users = lsGet(LS.staffUsers, []);
+                lsSet(LS.staffUsers, (users || []).filter(u => Number(u.id) !== Number(id)));
+                showToast('Staff dihapus.');
+                renderStaffTab();
+                return;
+            }
+            showToast(`${type} berhasil dihapus`);
+        }
+        
+        // Fungsi untuk memesan stok
+        function orderStock(product) {
+            showToast(`Memesan stok untuk ${product}`);
+        }
+        
+        // Fungsi untuk melihat detail
+        function viewDetail(type, id) {
+            showToast(`Melihat detail ${type} #${id}`);
+        }
+        
+        // Fungsi untuk export laporan
+        function exportReport(type) {
+            showToast(`Mengexport laporan ${type}`);
+        }
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotifications() {
+            showToast('Menampilkan semua notifikasi');
+        }
+        
+        // Search functionality
+        document.getElementById('globalSearch').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                showToast(`Mencari: ${this.value}`);
+            }
+        });
+        
+        // Menutup sidebar jika diklik di luar
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+        
+        // Inisialisasi
+        window.onload = function() {
+            seedIfEmpty();
+            // Render semua tab penting yang ada agar data langsung terlihat
+            renderProdukTab();
+            renderKategoriTab();
+            renderStaffTab();
+            renderOrderConfirmTab();
+            showToast('Selamat datang, Budi Santoso');
+        };
+    </script>
+</body>
+</html>

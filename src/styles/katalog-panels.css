@@ -1,0 +1,157 @@
+.katalog-root .mm-panel {
+  margin-top: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.katalog-root .mm-panel-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.katalog-root .mm-panel-header h3 {
+  font-size: 1.05rem;
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.katalog-root .mm-panel-body {
+  padding: 16px 18px;
+}
+
+.katalog-root .mm-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.katalog-root .mm-row > div {
+  flex: 1;
+  min-width: 180px;
+}
+
+.katalog-root .mm-input {
+  padding: 10px 12px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 10px;
+  width: 100%;
+  font: inherit;
+}
+
+.katalog-root .mm-input:focus {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.katalog-root .mm-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font: inherit;
+  font-weight: 700;
+}
+
+.katalog-root .mm-btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.katalog-root .mm-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.katalog-root .mm-btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.katalog-root .mm-btn-danger {
+  background: #ef4444;
+  color: #fff;
+}
+
+.katalog-root .mm-muted {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.katalog-root .mm-card {
+  padding: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.katalog-root .mm-qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.katalog-root .mm-qty input {
+  width: 70px;
+  text-align: center;
+}
+
+.katalog-root .mm-empty {
+  padding: 26px 10px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.katalog-root .mm-order-status {
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.katalog-root .mm-order-status.is-pending {
+  color: #d97706;
+}
+
+.katalog-root .mm-order-status.is-cancelled {
+  color: #ef4444;
+}
+
+.katalog-root .mm-order-status.is-delivered {
+  color: #059669;
+}
+
+.katalog-root .nav-profile {
+  cursor: pointer;
+}
+
+.katalog-root .customer-product-card.is-out {
+  opacity: 0.65;
+}
+
+.katalog-root .btn-add-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.katalog-root .katalog-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  font-size: 0.9rem;
+}

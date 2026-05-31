@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Online - Minimarket Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Customer Navigation -->
+    <nav class="customer-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40x40/a78bfa/ffffff?text=M" alt="Logo">
+                <span>Minimarket Pro</span>
+            </div>
+            
+            <div class="nav-search">
+                <input type="text" placeholder="Cari produk...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="katalog-online.html" class="active"><i class="fas fa-home"></i> Beranda</a>
+                <a href="keranjang.html"><i class="fas fa-shopping-cart"></i> Keranjang <span class="cart-badge">3</span></a>
+                <a href="pesanan-saya.html"><i class="fas fa-box"></i> Pesanan Saya</a>
+                <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            
+            <div class="nav-profile">
+                <img src="https://via.placeholder.com/35x35/a78bfa/ffffff?text=AC" alt="Profile">
+                <span>Andi Customer</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="customer-container">
+        <!-- Categories Sidebar -->
+        <div class="categories-sidebar">
+            <h3>Kategori</h3>
+            <ul>
+                <li class="active"><a href="#">Semua Produk <span class="count">156</span></a></li>
+                <li><a href="#">Makanan <span class="count">24</span></a></li>
+                <li><a href="#">Minuman <span class="count">18</span></a></li>
+                <li><a href="#">Sembako <span class="count">15</span></a></li>
+                <li><a href="#">Rokok <span class="count">12</span></a></li>
+                <li><a href="#">Alat Rumah Tangga <span class="count">20</span></a></li>
+                <li><a href="#">Perawatan Diri <span class="count">16</span></a></li>
+                <li><a href="#">Makanan Beku <span class="count">9</span></a></li>
+                <li><a href="#">Protein <span class="count">22</span></a></li>
+            </ul>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="customer-main">
+            <!-- Banner -->
+            <div class="promo-banner">
+                <img src="https://via.placeholder.com/800x150/a78bfa/ffffff?text=Promo+Spesial+%7C+Diskon+hingga+30%25" alt="Promo Banner">
+            </div>
+            
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="sort-options">
+                    <label>Urutkan:</label>
+                    <select>
+                        <option>Terpopuler</option>
+                        <option>Harga Terendah</option>
+                        <option>Harga Tertinggi</option>
+                        <option>Terbaru</option>
+                    </select>
+                </div>
+                <div class="view-options">
+                    <button class="active"><i class="fas fa-th"></i></button>
+                    <button><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="customer-product-grid">
+                <div class="customer-product-card">
+                    <div class="product-badge">HOT</div>
+                    <img src="images/products/indomie-goreng.jpg" alt="Indomie Goreng" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/2563eb/ffffff?text=Indomie';">
+                    <h4>Indomie Goreng</h4>
+                    <p class="product-price">Rp 3.500</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(120)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Indomie Goreng')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/telur-1kg.jpg" alt="Telur 1kg" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/f59e0b/ffffff?text=Telur';">
+                    <h4>Telur 1kg</h4>
+                    <p class="product-price">Rp 28.000</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Telur 1kg')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <div class="product-badge sale">-10%</div>
+                    <img src="images/products/minyak-goreng.jpg" alt="Minyak Goreng" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/ef4444/ffffff?text=Minyak';">
+                    <h4>Minyak Goreng</h4>
+                    <p class="product-price"><span class="original-price">Rp 15.000</span> Rp 13.500</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(42)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Minyak Goreng')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/beras-5kg.jpg" alt="Beras 5kg" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/10b981/ffffff?text=Beras';">
+                    <h4>Beras 5kg</h4>
+                    <p class="product-price">Rp 75.000</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(210)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Beras 5kg')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/gula-pasir.jpg" alt="Gula Pasir" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/8b5cf6/ffffff?text=Gula';">
+                    <h4>Gula Pasir</h4>
+                    <p class="product-price">Rp 14.500</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(68)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Gula Pasir')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/kopi-sachet.jpg" alt="Kopi Sachet" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/6b7280/ffffff?text=Kopi';">
+                    <h4>Kopi Sachet</h4>
+                    <p class="product-price">Rp 2.000</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(320)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Kopi Sachet')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/teh-botol.jpg" alt="Teh Botol" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/ec4899/ffffff?text=Teh';">
+                    <h4>Teh Botol</h4>
+                    <p class="product-price">Rp 5.000</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(94)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Teh Botol')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <div class="customer-product-card">
+                    <img src="images/products/roti-tawar.jpg" alt="Roti Tawar" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/f97316/ffffff?text=Roti';">
+                    <h4>Roti Tawar</h4>
+                    <p class="product-price">Rp 18.000</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(37)</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('Roti Tawar')">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="customer-pagination">
+                <button class="page-arrow" aria-label="Halaman sebelumnya">&laquo;</button>
+                <button class="page-number is-active">1</button>
+                <button class="page-number">2</button>
+                <button class="page-number">3</button>
+                <button class="page-number">4</button>
+                <button class="page-arrow" aria-label="Halaman berikutnya">&raquo;</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ===== LocalStorage Keys (shared with pos-kasir / owner) =====
+        const LS = {
+            products: 'mm_products',
+            categories: 'mm_categories',
+            orders: 'mm_orders',
+            customers: 'mm_customers',
+            currentCustomerId: 'mm_current_customer_id',
+            cart: 'mm_cart',
+            nextOrderSeq: 'mm_next_order_seq'
+        };
+
+        // ===== Utilities =====
+        function safeJsonParse(raw, fallback) {
+            try {
+                if (!raw) return fallback;
+                return JSON.parse(raw);
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        function loadLS(key, fallback) {
+            return safeJsonParse(localStorage.getItem(key), fallback);
+        }
+
+        function saveLS(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatIDR(n) {
+            const num = Number(n) || 0;
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function parseMoneyFromText(txt) {
+            // Extract number like "Rp 3.500" => 3500
+            const m = String(txt).replace(/\s/g, '').match(/Rp\s*([0-9.,]+)/i);
+            if (!m) return 0;
+            return Number(m[1].replace(/\./g, '').replace(',', '.')) || 0;
+        }
+
+        // ===== Initial seeds from DOM (if localStorage empty) =====
+        function seedProductsFromDomIfEmpty() {
+            const existing = loadLS(LS.products, null);
+            if (existing && Array.isArray(existing) && existing.length) return;
+
+            const cards = document.querySelectorAll('.customer-product-card');
+            const products = [];
+            let id = 1;
+            cards.forEach(card => {
+                const name = card.querySelector('h4')?.textContent?.trim();
+                const priceText = card.querySelector('.product-price')?.textContent || '';
+                const price = parseMoneyFromText(priceText);
+                // category fallback: try to infer from existing categories sidebar label
+                const cat = 'Umum';
+                if (!name) return;
+                products.push({ id: id++, name, category: cat, price, stock: 999 });
+            });
+
+            if (!products.length) {
+                // Last resort default set
+                products.push(
+                    { id: 1, name: 'Indomie Goreng', category: 'Makanan', price: 3500, stock: 999 },
+                    { id: 2, name: 'Telur 1kg', category: 'Sembako', price: 28000, stock: 999 },
+                    { id: 3, name: 'Minyak Goreng', category: 'Sembako', price: 15000, stock: 999 },
+                    { id: 4, name: 'Beras 5kg', category: 'Sembako', price: 75000, stock: 999 },
+                    { id: 5, name: 'Gula Pasir', category: 'Sembako', price: 14500, stock: 999 },
+                );
+            }
+
+            saveLS(LS.products, products);
+            // categories derived from products if not set
+            if (!loadLS(LS.categories, null) || !Array.isArray(loadLS(LS.categories, [])) || loadLS(LS.categories, []).length === 0) {
+                const catNames = [...new Set(products.map(p => p.category).filter(Boolean))];
+                saveLS(LS.categories, catNames.map((c, idx) => ({ id: idx + 1, name: c, description: '' })));
+            }
+        }
+
+        // ===== State =====
+        let mmView = 'market';
+        let mmCategory = 'all';
+
+        let products = [];
+        let categories = [];
+        let orders = [];
+        let customers = [];
+        let cartByCustomer = {}; // { [customerId]: { items: [{ productId, name, price, qty }] } }
+
+        function getCurrentCustomerId() {
+            return localStorage.getItem(LS.currentCustomerId);
+        }
+
+        function setCurrentCustomerId(id) {
+            if (!id) localStorage.removeItem(LS.currentCustomerId);
+            else localStorage.setItem(LS.currentCustomerId, id);
+        }
+
+        function getCurrentCustomer() {
+            const id = getCurrentCustomerId();
+            if (!id) return null;
+            return customers.find(c => String(c.id) === String(id)) || null;
+        }
+
+        function ensureCartForCustomer(customerId) {
+            const key = String(customerId);
+            if (!cartByCustomer[key]) cartByCustomer[key] = { items: [] };
+            return cartByCustomer[key];
+        }
+
+        function persistCart() {
+            saveLS(LS.cart, cartByCustomer);
+        }
+
+        // ===== View rendering helpers =====
+        function setView(view) {
+            mmView = view;
+            const elCart = document.getElementById('mmViewCart');
+            const elOrders = document.getElementById('mmViewOrders');
+            const elProfile = document.getElementById('mmViewProfile');
+            const elMarket = document.getElementById('mmViewMarket');
+
+            if (elCart) elCart.style.display = view === 'cart' ? 'block' : 'none';
+            if (elOrders) elOrders.style.display = view === 'orders' ? 'block' : 'none';
+            if (elProfile) elProfile.style.display = view === 'profile' ? 'block' : 'none';
+            if (elMarket) elMarket.style.display = view === 'market' ? 'block' : 'none';
+
+            // Update nav active state
+            document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+            const map = { market: 'Beranda', cart: 'Keranjang', orders: 'Pesanan Saya', profile: null };
+            document.querySelectorAll('.nav-menu a').forEach(a => {
+                const t = (a.textContent || '').trim();
+                if (map[view] && t.includes(map[view])) a.classList.add('active');
+            });
+
+            if (view === 'cart') renderCart();
+            if (view === 'orders') renderOrders();
+            if (view === 'profile') renderProfile();
+        }
+
+        function initPanelsIfNeeded() {
+            if (document.getElementById('mmPanelsReady')) return;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                .mm-panel {
+                    margin-top: 18px;
+                    background: rgba(255,255,255,0.9);
+                    border: 1px solid rgba(37,99,235,0.12);
+                    border-radius: 14px;
+                    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+                    overflow: hidden;
+                }
+                .mm-panel-header{
+                    padding: 14px 18px;
+                    border-bottom: 1px solid rgba(15,23,42,0.08);
+                    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;
+                }
+                .mm-panel-header h3{
+                    font-family: inherit;
+                    font-size: 1.05rem;
+                    color: #0f172a;
+                    font-weight: 800;
+                }
+                .mm-panel-body{ padding: 16px 18px; }
+                .mm-row{ display:flex; gap:12px; flex-wrap:wrap; }
+                .mm-input{ padding: 10px 12px; border: 1px solid rgba(15,23,42,0.15); border-radius: 10px; width: 100%; }
+                .mm-input:focus{ outline:none; border-color: rgba(37,99,235,0.5); box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
+                .mm-btn{ padding: 10px 14px; border-radius: 10px; border: none; cursor:pointer; font-weight:700; }
+                .mm-btn-primary{ background: #2563eb; color:#fff; }
+                .mm-btn-primary:hover{ background:#1d4ed8; }
+                .mm-btn-secondary{ background:#f1f5f9; color:#334155; border:1px solid rgba(15,23,42,0.1); }
+                .mm-btn-danger{ background:#ef4444; color:#fff; }
+                .mm-muted{ color:#6b7280; font-size:0.9rem; }
+                .mm-table{ width:100%; border-collapse: collapse; }
+                .mm-table th{ text-align:left; font-size:0.8rem; color:#6b7280; text-transform:uppercase; letter-spacing:0.06em; padding:12px 10px; border-bottom:1px solid rgba(15,23,42,0.08); }
+                .mm-table td{ padding:12px 10px; border-bottom:1px solid rgba(15,23,42,0.06); }
+                .mm-card{ padding: 12px 12px; border:1px solid rgba(15,23,42,0.1); border-radius: 12px; background: #fff; margin-bottom: 10px; }
+                .mm-qty{ display:flex; gap:8px; align-items:center; }
+                .mm-qty input{ width:70px; text-align:center; }
+                .mm-empty{ padding: 26px 10px; text-align:center; color:#6b7280; }
+            `;
+            document.head.appendChild(style);
+
+            const customerMain = document.querySelector('.customer-main');
+            if (!customerMain) return;
+
+            // Wrap marketplace area as market view
+            const banner = customerMain.querySelector('.promo-banner');
+            const filterBar = customerMain.querySelector('.filter-bar');
+            const productGrid = customerMain.querySelector('.customer-product-grid');
+            const pagination = customerMain.querySelector('.customer-pagination');
+
+            const marketWrap = document.createElement('div');
+            marketWrap.id = 'mmViewMarket';
+            marketWrap.style.display = 'block';
+            marketWrap.appendChild(banner);
+            marketWrap.appendChild(filterBar);
+            marketWrap.appendChild(productGrid);
+            if (pagination) marketWrap.appendChild(pagination);
+
+            const cartPanel = document.createElement('div');
+            cartPanel.id = 'mmViewCart';
+            cartPanel.className = 'mm-panel';
+            cartPanel.style.display = 'none';
+            cartPanel.innerHTML = `
+                <div class="mm-panel-header">
+                    <h3><i class="fas fa-shopping-cart"></i> Keranjang</h3>
+                    <div class="mm-muted">Kelola jumlah barang dan lakukan checkout.</div>
+                </div>
+                <div class="mm-panel-body" id="mmCartBody"></div>
+            `;
+
+            const ordersPanel = document.createElement('div');
+            ordersPanel.id = 'mmViewOrders';
+            ordersPanel.className = 'mm-panel';
+            ordersPanel.style.display = 'none';
+            ordersPanel.innerHTML = `
+                <div class="mm-panel-header">
+                    <h3><i class="fas fa-box"></i> Pesanan Saya</h3>
+                    <div class="mm-muted">Batalkan pesanan sebelum diproses (pending).</div>
+                </div>
+                <div class="mm-panel-body" id="mmOrdersBody"></div>
+            `;
+
+            const profilePanel = document.createElement('div');
+            profilePanel.id = 'mmViewProfile';
+            profilePanel.className = 'mm-panel';
+            profilePanel.style.display = 'none';
+            profilePanel.innerHTML = `
+                <div class="mm-panel-header">
+                    <h3><i class="fas fa-user"></i> Profil</h3>
+                    <div class="mm-muted">Daftar/ubah data akun customer.</div>
+                </div>
+                <div class="mm-panel-body" id="mmProfileBody"></div>
+            `;
+
+            customerMain.appendChild(cartPanel);
+            customerMain.appendChild(ordersPanel);
+            customerMain.appendChild(profilePanel);
+
+            // Move marketWrap into main as first child
+            customerMain.insertBefore(marketWrap, customerMain.firstChild);
+            const marker = document.createElement('div');
+            marker.id = 'mmPanelsReady';
+            marker.style.display = 'none';
+            customerMain.appendChild(marker);
+        }
+
+        function ensureCustomerOrGoProfile() {
+            const c = getCurrentCustomer();
+            if (!c) {
+                setView('profile');
+                return false;
+            }
+            return true;
+        }
+
+        // ===== Rendering: categories & products =====
+        function deriveCategories() {
+            const storedCats = loadLS(LS.categories, []);
+            if (Array.isArray(storedCats) && storedCats.length) return storedCats;
+            const unique = [...new Set(products.map(p => p.category).filter(Boolean))];
+            return unique.map((name, idx) => ({ id: idx + 1, name, description: '' }));
+        }
+
+        function renderCategories() {
+            const list = document.querySelector('.categories-sidebar ul');
+            if (!list) return;
+            list.innerHTML = '';
+
+            const catAllCount = products.length;
+            const liAll = document.createElement('li');
+            liAll.className = mmCategory === 'all' ? 'active' : '';
+            liAll.innerHTML = `<a href="#" data-cat="all">Semua Produk <span class="count">${catAllCount}</span></a>`;
+            list.appendChild(liAll);
+
+            categories.forEach(cat => {
+                const count = products.filter(p => p.category === cat.name).length;
+                const li = document.createElement('li');
+                li.className = mmCategory === cat.name ? 'active' : '';
+                li.innerHTML = `<a href="#" data-cat="${escapeHtml(cat.name)}">${escapeHtml(cat.name)} <span class="count">${count}</span></a>`;
+                list.appendChild(li);
+            });
+
+            list.querySelectorAll('a[data-cat]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mmCategory = a.getAttribute('data-cat');
+                    renderProducts();
+                    renderCategories();
+                });
+            });
+        }
+
+        function renderProducts() {
+            const grid = document.querySelector('.customer-product-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const visible = mmCategory === 'all' ? products : products.filter(p => p.category === mmCategory);
+            visible.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'customer-product-card';
+                card.innerHTML = `
+                    <img src="https://via.placeholder.com/200x200/2563eb/ffffff?text=${encodeURIComponent(p.name.slice(0, 18))}" alt="${escapeHtml(p.name)}" loading="lazy">
+                    <h4>${escapeHtml(p.name)}</h4>
+                    <p class="product-price">${formatIDR(p.price)}</p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(0)</span>
+                    </div>
+                    <button class="btn-add-cart" type="button" onclick="addToCart(${p.id})">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ===== Cart logic =====
+        function getCart() {
+            const c = getCurrentCustomer();
+            if (!c) return { items: [] };
+            return ensureCartForCustomer(c.id);
+        }
+
+        function getCartCount() {
+            const c = getCurrentCustomer();
+            if (!c) return 0;
+            const cart = ensureCartForCustomer(c.id);
+            return (cart.items || []).reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
+        }
+
+        function addToCart(productIdOrName) {
+            const c = getCurrentCustomer();
+            if (!c) {
+                setView('profile');
+                return;
+            }
+
+            const pid = Number(productIdOrName);
+            let product = null;
+            if (!isNaN(pid) && pid) {
+                product = products.find(p => Number(p.id) === pid) || null;
+            }
+            if (!product) {
+                // fallback to matching by name (for legacy buttons)
+                const name = String(productIdOrName);
+                product = products.find(p => p.name === name) || null;
+            }
+            if (!product) {
+                alert('Produk tidak ditemukan.');
+                return;
+            }
+
+            const cart = ensureCartForCustomer(c.id);
+            const items = cart.items || [];
+            const existing = items.find(it => Number(it.productId) === Number(product.id));
+            if (existing) existing.qty += 1;
+            else items.push({ productId: product.id, name: product.name, price: product.price, qty: 1 });
+
+            cart.items = items;
+            cartByCustomer[String(c.id)] = cart;
+            persistCart();
+
+            updateCartBadge();
+            showToastInline('Ditambahkan ke keranjang.');
+        }
+
+        function updateCartItemQty(productId, nextQty) {
+            const c = getCurrentCustomer();
+            if (!c) return;
+            const cart = ensureCartForCustomer(c.id);
+            const items = cart.items || [];
+            const it = items.find(x => Number(x.productId) === Number(productId));
+            if (!it) return;
+            const qty = Math.max(0, Number(nextQty) || 0);
+            if (qty === 0) {
+                cart.items = items.filter(x => Number(x.productId) !== Number(productId));
+            } else {
+                it.qty = qty;
+            }
+            cartByCustomer[String(c.id)] = cart;
+            persistCart();
+            updateCartBadge();
+            renderCart();
+        }
+
+        function removeCartItem(productId) {
+            updateCartItemQty(productId, 0);
+        }
+
+        function computeCartTotal() {
+            const cart = getCart();
+            return (cart.items || []).reduce((sum, it) => sum + (Number(it.price) || 0) * (Number(it.qty) || 0), 0);
+        }
+
+        function renderCart() {
+            if (!ensureCustomerOrGoProfile()) return;
+            const body = document.getElementById('mmCartBody');
+            if (!body) return;
+
+            const cart = getCart();
+            const items = cart.items || [];
+            if (!items.length) {
+                body.innerHTML = `<div class="mm-empty">Keranjang masih kosong. Tambahkan produk dari Beranda.</div>`;
+                return;
+            }
+
+            const rows = items.map(it => `
+                <div class="mm-card">
+                    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                        <div>
+                            <div style="font-weight:800;color:#0f172a;">${escapeHtml(it.name)}</div>
+                            <div class="mm-muted">${formatIDR(it.price)} / item</div>
+                        </div>
+                        <div class="mm-qty">
+                            <button class="mm-btn mm-btn-secondary" type="button" onclick="updateCartItemQty(${it.productId}, ${it.qty - 1})">-</button>
+                            <input class="mm-input" type="number" value="${it.qty}" min="0" onchange="updateCartItemQty(${it.productId}, this.value)" />
+                            <button class="mm-btn mm-btn-secondary" type="button" onclick="updateCartItemQty(${it.productId}, ${it.qty + 1})">+</button>
+                            <button class="mm-btn mm-btn-danger" type="button" onclick="removeCartItem(${it.productId})" style="padding:10px 12px;">Hapus</button>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;font-weight:800;color:#2563eb;">
+                        Subtotal: ${formatIDR((Number(it.price) || 0) * (Number(it.qty) || 0))}
+                    </div>
+                </div>
+            `).join('');
+
+            body.innerHTML = `
+                ${rows}
+                <div style="margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;">
+                    <div class="mm-muted">Total</div>
+                    <div style="font-size:1.25rem;font-weight:900;color:#2563eb;">${formatIDR(computeCartTotal())}</div>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="mm-btn mm-btn-primary" type="button" onclick="checkoutCart()">
+                        <i class="fas fa-credit-card"></i> Checkout
+                    </button>
+                    <button class="mm-btn mm-btn-secondary" type="button" onclick="setView('market')">
+                        Lanjut belanja
+                    </button>
+                </div>
+            `;
+        }
+
+        // ===== Checkout / Orders =====
+        function createOrderFromCart() {
+            const c = getCurrentCustomer();
+            if (!c) return null;
+            const cart = ensureCartForCustomer(c.id);
+            const items = cart.items || [];
+            if (!items.length) return null;
+
+            products = loadLS(LS.products, products);
+            orders = loadLS(LS.orders, orders);
+
+            const nextSeq = Number(loadLS(LS.nextOrderSeq, 1)) || (Math.max(0, ...orders.map(o => Number(o.id) || 0)) + 1);
+            const orderId = '#ORD-' + String(nextSeq).padStart(3, '0');
+
+            const total = items.reduce((sum, it) => sum + (Number(it.price) || 0) * (Number(it.qty) || 0), 0);
+
+            const order = {
+                id: nextSeq,
+                orderId,
+                customer: c.name,
+                customerId: c.id,
+                address: c.address || '',
+                phone: c.phone || '',
+                date: new Date().toLocaleString(),
+                items: items.map(it => ({ name: it.name, qty: it.qty, price: it.price, productId: it.productId })),
+                total,
+                status: 'pending'
+            };
+
+            orders.unshift(order);
+            saveLS(LS.orders, orders);
+            saveLS(LS.nextOrderSeq, nextSeq + 1);
+
+            // clear cart
+            cartByCustomer[String(c.id)] = { items: [] };
+            persistCart();
+            updateCartBadge();
+
+            return order;
+        }
+
+        function checkoutCart() {
+            const order = createOrderFromCart();
+            if (!order) {
+                alert('Keranjang kosong atau customer belum terdaftar.');
+                return;
+            }
+            setView('orders');
+        }
+
+        function statusLabel(status) {
+            if (status === 'pending') return { label: 'Menunggu', cls: 'status-pending' };
+            if (status === 'processing') return { label: 'Diproses', cls: 'status-processing' };
+            if (status === 'shipped') return { label: 'Dikirim', cls: 'status-shipped' };
+            if (status === 'delivered') return { label: 'Selesai / Sampai', cls: 'status-delivered' };
+            if (status === 'cancelled') return { label: 'Dibatalkan', cls: 'status-cancelled' };
+            return { label: status, cls: '' };
+        }
+
+        function cancelOrder(orderIdOrNumeric) {
+            const c = getCurrentCustomer();
+            if (!c) return;
+            orders = loadLS(LS.orders, orders);
+            const idNum = Number(orderIdOrNumeric);
+            const target = orders.find(o => Number(o.id) === idNum) || orders.find(o => o.orderId === orderIdOrNumeric);
+            if (!target) return;
+            if (target.customerId !== c.id) return;
+            if (target.status !== 'pending') return;
+
+            target.status = 'cancelled';
+            target.cancelledAt = new Date().toLocaleString();
+            saveLS(LS.orders, orders);
+            setView('orders');
+        }
+
+        function renderOrders() {
+            if (!ensureCustomerOrGoProfile()) return;
+            const body = document.getElementById('mmOrdersBody');
+            if (!body) return;
+
+            orders = loadLS(LS.orders, orders);
+            const c = getCurrentCustomer();
+            const list = orders.filter(o => String(o.customerId) === String(c.id));
+
+            if (!list.length) {
+                body.innerHTML = `<div class="mm-empty">Belum ada pesanan.</div>`;
+                return;
+            }
+
+            body.innerHTML = list.map(o => {
+                const st = statusLabel(o.status);
+                const canCancel = o.status === 'pending';
+                const cancelBtn = canCancel
+                    ? `<button class="mm-btn mm-btn-danger" type="button" onclick="cancelOrder(${o.id})">Cancel</button>`
+                    : '';
+
+                return `
+                    <div class="mm-card">
+                        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                            <div>
+                                <div style="font-weight:900;color:#0f172a;">${escapeHtml(o.orderId)}</div>
+                                <div class="mm-muted">${escapeHtml(o.date)}</div>
+                            </div>
+                            <div style="font-weight:800;color:#2563eb;">
+                                ${escapeHtml(st.label)}
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                            <div class="mm-muted">
+                                ${o.items.slice(0, 4).map(it => `${escapeHtml(it.name)} ×${it.qty}`).join(', ')}${o.items.length > 4 ? '...' : ''}
+                            </div>
+                            <div style="font-weight:900;color:#10b981;">
+                                Total: ${formatIDR(o.total)}
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                            ${cancelBtn}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ===== Profile =====
+        function renderProfile() {
+            const body = document.getElementById('mmProfileBody');
+            if (!body) return;
+            customers = loadLS(LS.customers, customers);
+
+            const current = getCurrentCustomer();
+            const isNew = !current;
+
+            if (isNew) {
+                body.innerHTML = `
+                    <div class="mm-card">
+                        <div style="font-weight:900;color:#0f172a;margin-bottom:6px;">Register akun</div>
+                        <div class="mm-muted" style="margin-bottom:12px;">Buat akun customer untuk checkout dan riwayat pesanan.</div>
+                        <div class="mm-row" style="margin-bottom:10px;">
+                            <div style="flex:1;min-width:180px;">
+                                <label>Nama</label>
+                                <input id="mmRegName" class="mm-input" placeholder="Nama lengkap">
+                            </div>
+                            <div style="flex:1;min-width:180px;">
+                                <label>Email</label>
+                                <input id="mmRegEmail" class="mm-input" placeholder="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mm-row" style="margin-bottom:10px;">
+                            <div style="flex:1;min-width:180px;">
+                                <label>Telepon</label>
+                                <input id="mmRegPhone" class="mm-input" placeholder="08xxxxxxxx">
+                            </div>
+                            <div style="flex:1;min-width:180px;">
+                                <label>Alamat</label>
+                                <input id="mmRegAddress" class="mm-input" placeholder="Alamat lengkap">
+                            </div>
+                        </div>
+                        <button class="mm-btn mm-btn-primary" type="button" onclick="registerCustomer()">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                    </div>
+                `;
+            } else {
+                body.innerHTML = `
+                    <div class="mm-card">
+                        <div style="font-weight:900;color:#0f172a;margin-bottom:6px;">Edit profil</div>
+                        <div class="mm-muted" style="margin-bottom:12px;">Ubah data akun customer.</div>
+                        <div class="mm-row" style="margin-bottom:10px;">
+                            <div style="flex:1;min-width:180px;">
+                                <label>Nama</label>
+                                <input id="mmProfName" class="mm-input" value="${escapeHtml(current.name || '')}">
+                            </div>
+                            <div style="flex:1;min-width:180px;">
+                                <label>Email</label>
+                                <input id="mmProfEmail" class="mm-input" value="${escapeHtml(current.email || '')}" disabled>
+                                <div class="mm-muted" style="margin-top:6px;">Email tidak bisa diubah.</div>
+                            </div>
+                        </div>
+                        <div class="mm-row" style="margin-bottom:10px;">
+                            <div style="flex:1;min-width:180px;">
+                                <label>Telepon</label>
+                                <input id="mmProfPhone" class="mm-input" value="${escapeHtml(current.phone || '')}">
+                            </div>
+                            <div style="flex:1;min-width:180px;">
+                                <label>Alamat</label>
+                                <input id="mmProfAddress" class="mm-input" value="${escapeHtml(current.address || '')}">
+                            </div>
+                        </div>
+                        <button class="mm-btn mm-btn-primary" type="button" onclick="saveProfile()">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                        <button class="mm-btn mm-btn-secondary" type="button" onclick="logoutCustomer()" style="margin-left:10px;">
+                            Keluar
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function registerCustomer() {
+            customers = loadLS(LS.customers, customers);
+            const name = document.getElementById('mmRegName')?.value?.trim();
+            const email = document.getElementById('mmRegEmail')?.value?.trim().toLowerCase();
+            const phone = document.getElementById('mmRegPhone')?.value?.trim();
+            const address = document.getElementById('mmRegAddress')?.value?.trim();
+            if (!name || !email) {
+                alert('Nama dan email wajib diisi.');
+                return;
+            }
+
+            let cust = customers.find(c => (c.email || '').toLowerCase() === email);
+            if (!cust) {
+                const id = Date.now();
+                cust = { id, name, email, phone, address, createdAt: Date.now() };
+                customers.push(cust);
+            } else {
+                cust.name = name;
+                cust.phone = phone;
+                cust.address = address;
+            }
+
+            saveLS(LS.customers, customers);
+            setCurrentCustomerId(cust.id);
+            setView('market');
+            updateCartBadge();
+        }
+
+        function saveProfile() {
+            customers = loadLS(LS.customers, customers);
+            const current = getCurrentCustomer();
+            if (!current) return;
+
+            const name = document.getElementById('mmProfName')?.value?.trim();
+            const phone = document.getElementById('mmProfPhone')?.value?.trim();
+            const address = document.getElementById('mmProfAddress')?.value?.trim();
+            if (!name) {
+                alert('Nama wajib diisi.');
+                return;
+            }
+
+            current.name = name;
+            current.phone = phone;
+            current.address = address;
+            saveLS(LS.customers, customers);
+            setView('profile');
+            updateCartBadge();
+            showToastInline('Profil tersimpan.');
+        }
+
+        function logoutCustomer() {
+            if (confirm('Logout customer?')) {
+                setCurrentCustomerId(null);
+                setView('market');
+                updateCartBadge();
+            }
+        }
+
+        // ===== Cart badge =====
+        function updateCartBadge() {
+            const badgeEl = document.querySelector('.cart-badge');
+            if (!badgeEl) return;
+            const count = getCartCount();
+            badgeEl.textContent = String(count);
+            badgeEl.style.display = count > 0 ? 'flex' : 'none';
+        }
+
+        function showToastInline(msg) {
+            // Lightweight toast without changing existing DOM structure
+            let toast = document.getElementById('mmToast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'mmToast';
+                toast.style.position = 'fixed';
+                toast.style.right = '20px';
+                toast.style.bottom = '20px';
+                toast.style.background = 'rgba(15,23,42,0.95)';
+                toast.style.color = '#fff';
+                toast.style.padding = '12px 16px';
+                toast.style.borderRadius = '999px';
+                toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.25)';
+                toast.style.zIndex = '9999';
+                toast.style.display = 'none';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 1600);
+        }
+
+        // ===== Wire up navigation =====
+        function initNav() {
+            const nav = document.querySelector('.nav-menu');
+            if (!nav) return;
+
+            nav.querySelectorAll('a').forEach(a => {
+                const text = (a.textContent || '').trim();
+                a.addEventListener('click', (e) => {
+                    const href = a.getAttribute('href') || '';
+                    if (href && !href.startsWith('#') && !href.includes('.html')) return;
+                    if (text.includes('Keranjang')) {
+                        e.preventDefault();
+                        if (ensureCustomerOrGoProfile()) setView('cart');
+                        else setView('profile');
+                    } else if (text.includes('Pesanan Saya')) {
+                        e.preventDefault();
+                        if (ensureCustomerOrGoProfile()) setView('orders');
+                        else setView('profile');
+                    } else if (text.includes('Beranda')) {
+                        e.preventDefault();
+                        setView('market');
+                    } else if (text.includes('Logout')) {
+                        e.preventDefault();
+                        logoutCustomer();
+                    }
+                });
+            });
+
+            // Current profile nav button
+            const profile = document.querySelector('.nav-profile');
+            if (profile) profile.addEventListener('click', () => setView('profile'));
+        }
+
+        // Expose functions used by generated product buttons
+        window.addToCart = addToCart;
+        window.updateCartItemQty = updateCartItemQty;
+        window.removeCartItem = removeCartItem;
+        window.checkoutCart = checkoutCart;
+        window.cancelOrder = cancelOrder;
+        window.registerCustomer = registerCustomer;
+        window.saveProfile = saveProfile;
+
+        // ===== App init =====
+        function init() {
+            initPanelsIfNeeded();
+
+            seedProductsFromDomIfEmpty();
+
+            products = loadLS(LS.products, []);
+            categories = loadLS(LS.categories, []);
+            orders = loadLS(LS.orders, []);
+            customers = loadLS(LS.customers, []);
+            cartByCustomer = loadLS(LS.cart, {});
+            categories = deriveCategories();
+
+            // Render market
+            renderCategories();
+            renderProducts();
+            updateCartBadge();
+
+            // Default view
+            setView('market');
+
+            // Nav and listeners
+            initNav();
+
+            // Filter active initial
+            mmCategory = 'all';
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
