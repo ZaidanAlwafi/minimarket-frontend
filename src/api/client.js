@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = const API_BASE = 'https://minimarket-backend-production-5bbe.up.railway.app/api';
 
 export const AUTH_TOKEN_KEY = 'mm_auth_token';
 export const AUTH_USER_KEY = 'mm_auth_user';
